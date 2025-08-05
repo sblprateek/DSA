@@ -25,10 +25,11 @@ public:
             for(int i=0; i<size; i++){
             TreeNode* node=q.front();q.pop();
 
-            if(node->left!=nullptr)q.push(node->left);
+            
             if(node->right!=nullptr)q.push(node->right);
+            if(node->left!=nullptr)q.push(node->left);
 
-            if(i==size-1)
+            if(i==0)
             ans.push_back(node->val);
 
             }
