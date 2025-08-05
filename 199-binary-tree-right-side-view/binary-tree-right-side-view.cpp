@@ -10,33 +10,24 @@
  * };
  */
 class Solution {
+vector<int> ans;
 public:
     vector<int> rightSideView(TreeNode* root) {
-        vector<int> ans;
-
-        if(root==nullptr)
+        int level=0;
+        modpreorder(root,level);
         return ans;
-
-        queue<TreeNode*> q;
-        q.push(root);
-
-        while(!q.empty()){
-            int size=q.size();
-            for(int i=0; i<size; i++){
-            TreeNode* node=q.front();q.pop();
-
-            
-            if(node->right!=nullptr)q.push(node->right);
-            if(node->left!=nullptr)q.push(node->left);
-
-            if(i==0)
-            ans.push_back(node->val);
-
-            }
-
-        }
-    return ans;
     }
 
+private:
+    void modpreorder(TreeNode* root, int level){
+        if(root==nullptr)
+        return;
+        if(level==ans.size())
+            ans.push_back(root->val);
 
+        modpreorder(root->right,level+1);
+        modpreorder(root->left,level+1);
+        
+        return;
+    }
 };
