@@ -1,26 +1,17 @@
 class Solution {
 public:
-    double myPow(double x, int n) {
-      long long nn=(long long)n;
-      double ans=1;
-        
-        if(nn<0)nn=-1*nn;
-        
-        while(nn>0){
-        if(nn%2==0){
-            x=x*x;
-            nn=nn/2;
-        }
-        else{
-            ans=ans*x;
-            nn=nn-1;
-        }
-        }
-       
+    double func(double x, int n){
+        if(n==0)return 1;
 
-        return (n>0)?ans:1/ans;
+        if(n%2==0)return func(x*x,n/2);
+        else return x*func(x*x,n/2);
+
     }
-
-   
-
+    double myPow(double x, int n) {
+        if(n<0){
+            double ans=func(x,n);
+            return 1/ans;
+        }
+        return func(x,n);
+    }
 };
